@@ -1,0 +1,20 @@
+# Contributor: Ali H. Caliskan <ali.h.caliskan//gmail.com>
+# Contributor: Stefan Kirrmann <stefan.kirrmann at gmail dot com>
+
+pkgname=py-postgresql
+pkgver=1.1.0
+pkgrel=1
+pkgdesc="Python 3 package providing modules for PostgreSQL"
+arch=(any)
+url="http://python.projects.postgresql.org"
+license=('BSD')
+depends=('python')
+options=(!emptydirs)
+source=("http://github.com/python-postgres/fe/zipball/v$pkgver")
+md5sums=('e3d196ccab2eb4f1a1ae44f56cbba38b')
+
+package() {
+    mv $srcdir/python-postgres-fe-* $srcdir/$pkgname-$pkgver
+    cd $srcdir/$pkgname-$pkgver
+    python3 setup.py install --root=$pkgdir/ --optimize=1
+}
